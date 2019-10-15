@@ -1,27 +1,27 @@
 <?php
-$date_from = '06/05/1996';
-$date_till = '27/06/2017'; //time();
+$dateFrom = '06/05/1996';
+$dateTill = '27/06/2017'; //time();
 
-$dnfrom = mb_strcut( $date_from, 0,2 );
-$dntill = mb_strcut( $date_till, 0,2 );
+$dayFrom = mb_strcut( $dateFrom, 0,2 );
+$dayTill = mb_strcut( $dateTill, 0,2 );
 
-$mesfrom = mb_strcut( $date_from, 3,2 );
-$mestill = mb_strcut( $date_till, 3,2 );
+$monthFrom = mb_strcut( $dateFrom, 3,2 );
+$monthTill = mb_strcut( $dateTill, 3,2 );
 
-$godfrom = mb_strcut( $date_from, 6,4 ); //date('Y', strtotime($date_from))
-$godtill = mb_strcut( $date_till, 6,4 );
+$yearFrom = mb_strcut( $dateFrom, 6,4 ); //date('Y', strtotime($date_from))
+$yearTill = mb_strcut( $dateTill, 6,4 );
 
-if ($dnfrom <= $dntill) {
-	$dn = $dntill - $dnfrom;
-	$dni= $dni + $dn;
+if ($dayFrom <= $dateTill) {
+	$dn = $dateTill - $dayFrom;
+	$days= $days + $dn;
 	}
-else { $dntill= $dntill+30;
-	$mestill= $mestill-1;
-	$dn = $dntill - $dnfrom;
-	$dni= $dni + $dn;
+else { $dateTill= $dntill+30;
+	$monthTill= $monthTill-1;
+	$dn = $dateTill - $dayFrom;
+	$days= $days + $dn;
 	}
-if ($mesfrom <= $mestill) {	
-	for ($i=$mesfrom; $i<=$mestill;$i++){
+if ($monthFrom <= $monthTill) {	
+	for ($i=$monthFrom; $i<=$monthTill;$i++){
 		switch ($i) {
 			case 1:
 			case 3:
@@ -30,18 +30,18 @@ if ($mesfrom <= $mestill) {
 			case 8:
 			case 10:
 			case 11:
-				$dni++;
+				$days++;
 				break;
 			case 2:
-				$dni= $dni-2;
+				$days= $days-2;
 		}
 	}
-	$mes = (($mestill - $mesfrom)*30);
-	$dni= $dni + $mes;
+	$month = (($monthTill - $monthFrom)*30);
+	$days= $days + $month;
 }	
-else { $mestill= $mestill+12;
-$godtill= $godtill-1;
-for ($i=$mesfrom; $i<=$mestill;$i++){
+else { $monthTill= $monthTill+12;
+$yearTill= $yearTill-1;
+for ($i=$monthFrom; $i<=$monthTill;$i++){
 		switch ($i) {
 			case 1:
 			case 3:
@@ -50,24 +50,24 @@ for ($i=$mesfrom; $i<=$mestill;$i++){
 			case 8:
 			case 10:
 			case 11:
-				$dni++;
+				$days++;
 				break;
 			case 2:
-				$dni= $dni-2;
+				$days= $days-2;
 		}
 	}
-	$mes = (($mestill - $mesfrom)*30);
-	$dni= $dni + $mes;
+	$month = (($monthTill - $monthFrom)*30);
+	$days= $days + $month;
 }
 
-for ($i=$godfrom; $i<=$godtill; $i++){
+for ($i=$yearFrom; $i<=$yearTill; $i++){
 		if (((($i%4)==0)&&(($i%100)!==0))||(($i%400)==0)) {
-			$dni++;
+			$days++;
 		}
 	}
-	$god= (($godtill - $godfrom)*365);
-	$dni= $dni + $god; 
-	echo "Vozrast v dnyah: $dni ";
+	$year= (($yearTill - $yearFrom)*365);
+	$days= $days + $year; 
+	echo "Vozrast v dnyah: $days ";
 
 
 
